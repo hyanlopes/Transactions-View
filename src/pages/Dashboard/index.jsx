@@ -1,3 +1,10 @@
+import Form from "../../components/form";
+
 const Dashboard = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Form />
+    </div>
+  );
 };
+export default Dashboard;
