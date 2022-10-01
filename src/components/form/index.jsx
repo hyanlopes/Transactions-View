@@ -9,9 +9,10 @@ const Form = () => {
   const FormSchema = yup.object().shape({
     amount: yup
       .number()
+      .typeError("Você deve escrever um número")
       .required("Campo obrigatório")
-      .min(1000, "Venda deve ser maior ou igaul a R$ 1000"),
-    installments: yup.number().required("Campo obrigatório"),
+      .min("1000", "Venda deve ser maior ou igual a R$ 1000"),
+    installments: yup.string().required("Campo obrigatório"),
     mdr: yup.string().required("Campo obrigatório"),
   });
   const {
@@ -19,7 +20,7 @@ const Form = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(FormSchema) });
-
+  console.log(errors);
   const OnSubmitForm = (data) => {
     requestFunc(data);
   };
@@ -30,9 +31,12 @@ const Form = () => {
         <p className="form-input__title">Informe o valor da venda *</p>
         <input
           className="form-input__input"
-          type="text"
+          type="number"
           {...register("amount")}
         />
+        {errors.amount && (
+          <p className="form-input__error">{errors.amount.message}</p>
+        )}
       </div>
       <div className="form-input">
         <p className="form-input__title">Em quantas parcelas *</p>
@@ -44,11 +48,19 @@ const Form = () => {
           {...register("installments")}
         />
         <p className="form-input__alert">Máximo de 12 parcelas</p>
+
+        {errors.installments && (
+          <p className="form-input__error">{errors.installments.message}</p>
+        )}
       </div>
       <div className="form-input">
         <p className="form-input__title">Informe o percentual de MDR *</p>
         <input className="form-input__input" type="text" {...register("mdr")} />
+        {errors.mdr && (
+          <p className="form-input__error">{errors.mdr.message}</p>
+        )}
       </div>
+
       <button type="submit">Enviar</button>
     </FormStyled>
   );

@@ -3,13 +3,14 @@ import { useRequest } from "../../providers/requests";
 import { useEffect } from "react";
 import Loader from "../loader";
 import { useLoader } from "../../providers/loadings";
+import ErrorScreen from "../errorScreen";
 const Response = () => {
   const { result } = useRequest();
   const { loading, update, disassemble } = useLoader();
   useEffect(() => {
     update();
     return () => {
-      disassemble();
+      disassemble(result);
     };
   }, [result]);
 
@@ -17,6 +18,8 @@ const Response = () => {
     <Container>
       {loading === true ? (
         <Loader />
+      ) : result === "Timeout" ? (
+        <ErrorScreen err={result} />
       ) : (
         <>
           <h2>VOCÊ RECEBERÁ:</h2>

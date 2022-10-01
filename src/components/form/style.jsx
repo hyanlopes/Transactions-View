@@ -34,6 +34,11 @@ export const FormStyled = styled.form`
   .form-input__input:focus {
     border: 1px solid hsla(207, 75%, 66%, 1);
   }
+  .form-input__error {
+    color: red;
+    opacity: 0.6;
+    font-size: 14px;
+  }
   @media (min-width: 510px) {
     width: 70%;
   }
