@@ -2,19 +2,26 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormStyled } from "./style";
+import { useRequest } from "../../providers/requests";
 const Form = () => {
-  const FormSchema = yup.object().shape({
-    email: yup.string().email("Invalid format").required("Required field"),
-    password: yup.string().required("Required field"),
-  });
+  const { requestFunc } = useRequest();
 
+  const FormSchema = yup.object().shape({
+    amount: yup
+      .number()
+      .required("Campo obrigatório")
+      .min(1000, "Venda deve ser maior ou igaul a R$ 1000"),
+    installments: yup.number().required("Campo obrigatório"),
+    mdr: yup.string().required("Campo obrigatório"),
+  });
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(FormSchema) });
+  console.log(errors);
   const OnSubmitForm = (data) => {
-    userLogin(data);
+    requestFunc(data);
   };
   return (
     <FormStyled onSubmit={handleSubmit(OnSubmitForm)}>
@@ -42,6 +49,7 @@ const Form = () => {
         <p className="form-input__title">Informe o percentual de MDR *</p>
         <input className="form-input__input" type="text" {...register("mdr")} />
       </div>
+      <button type="submit">Enviar</button>
     </FormStyled>
   );
 };
