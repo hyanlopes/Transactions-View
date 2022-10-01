@@ -6,6 +6,7 @@ const Dashboard = () => {
     <Container>
       <Content>
         <Form />
+        <Response />
       </Content>
     </Container>
   );

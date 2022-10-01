@@ -1,22 +1,24 @@
+import { Container } from "./style";
+
 const Response = () => {
   return (
-    <div>
+    <Container>
       <h2>VOCÊ RECEBERÁ:</h2>
-      <section>
-        <p>
-          Amanhã: <span>R$ 0,00</span>
+      <section className="result">
+        <p className="result-days">
+          Amanhã: <span className="result-days__value">R$ 0,00</span>
         </p>
-        <p>
-          Em 15 dias: <span>R$ 0,00</span>
+        <p className="result-days">
+          Em 15 dias: <span className="result-days__value">R$ 0,00</span>
         </p>
-        <p>
-          Em 30 dias: <span>R$ 0,00</span>
+        <p className="result-days">
+          Em 30 dias: <span className="result-days__value">R$ 0,00</span>
         </p>
-        <p>
-          Em 90 dias: <span>R$ 0,00</span>
+        <p className="result-days">
+          Em 90 dias: <span className="result-days__value">R$ 0,00</span>
         </p>
       </section>
-    </div>
+    </Container>
   );
 };
 export default Response;
