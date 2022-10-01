@@ -9,7 +9,7 @@ export const RequestProvider = ({ children }) => {
   const requestFunc = (data) => {
     api.post("", data).then((res) => {
       setResult(res.data);
-      toast.success("Resultado obtido com sucesso!");
+      setTimeout(() => toast.success("Resposta obtida com sucesso"), 800);
     });
   };
   return (

@@ -19,7 +19,7 @@ const Form = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(FormSchema) });
-  console.log(errors);
+
   const OnSubmitForm = (data) => {
     requestFunc(data);
   };
