@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { createContext } from "react";
-import { toast } from "react-toastify";
 
 export const LoaderContext = createContext();
 
@@ -11,10 +10,13 @@ export const LoaderProvider = ({ children }) => {
     setLoading(true);
   };
 
-  const disassemble = () => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 700);
+  const disassemble = (result) => {
+    setTimeout(
+      () => {
+        setLoading(false);
+      },
+      result == "Timeout" || result === "Internal Server Error" ? 4000 : 700
+    );
   };
 
   return (
