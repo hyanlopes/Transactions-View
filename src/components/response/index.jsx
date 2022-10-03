@@ -18,7 +18,7 @@ const Response = () => {
     <Container>
       {loading === true ? (
         <Loader />
-      ) : result === "Timeout" ? (
+      ) : result === "Timeout" || result === "Internal Server Error" ? (
         <ErrorScreen err={result} />
       ) : (
         <>
