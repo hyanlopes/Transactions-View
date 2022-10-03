@@ -11,12 +11,11 @@ export const LoaderProvider = ({ children }) => {
   };
 
   const disassemble = (result) => {
-    console.log(result);
     setTimeout(
       () => {
         setLoading(false);
       },
-      result == "Timeout" ? 4000 : 700
+      result == "Timeout" || result === "Internal Server Error" ? 4000 : 700
     );
   };
 

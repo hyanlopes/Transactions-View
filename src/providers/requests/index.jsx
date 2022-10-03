@@ -13,7 +13,8 @@ export const RequestProvider = ({ children }) => {
       .post("", data)
       .then((res) => {
         setResult(res.data);
-        setTimeout(() => toast.success("Resposta obtida com sucesso"), 800);
+        disassemble();
+        toast.success("Resposta obtida com sucesso");
       })
       .catch((err) => {
         update();

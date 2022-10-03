@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormStyled } from "./style";
 import { useRequest } from "../../providers/requests";
+import { useLoader } from "../../providers/loadings";
 const Form = () => {
   const { requestFunc } = useRequest();
-
+  const { update } = useLoader();
   const FormSchema = yup.object().shape({
     amount: yup
       .number()
@@ -20,8 +21,9 @@ const Form = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(FormSchema) });
-  console.log(errors);
+
   const OnSubmitForm = (data) => {
+    update();
     requestFunc(data);
   };
   return (

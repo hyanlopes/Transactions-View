@@ -1,19 +1,11 @@
 import { Container } from "./style";
 import { useRequest } from "../../providers/requests";
-import { useEffect } from "react";
 import Loader from "../loader";
 import { useLoader } from "../../providers/loadings";
 import ErrorScreen from "../errorScreen";
 const Response = () => {
   const { result } = useRequest();
-  const { loading, update, disassemble } = useLoader();
-  useEffect(() => {
-    update();
-    return () => {
-      disassemble(result);
-    };
-  }, [result]);
-
+  const { loading } = useLoader();
   return (
     <Container>
       {loading === true ? (
